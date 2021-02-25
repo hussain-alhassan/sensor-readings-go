@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
-	"models"
+	"github.com/hussain-alhassan/sensor-readings-go/models"
 	"math/rand"
 	"net/http"
 	"time"
@@ -39,6 +39,7 @@ func main() {
 		if err != nil {
 			fmt.Println(err)
 		}
-		break // to be deleted
+
+		time.Sleep(time.Second)
 	}
 }
