@@ -4,18 +4,11 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
+	"models"
 	"math/rand"
 	"net/http"
 	"time"
 )
-
-type Reading struct {
-	ID        string	`json:"id"`
-	Type      string	`json:"type"`
-	Value     float64	`json:"value"`
-	Alert     bool		`json:"alert"`
-	Timestamp time.Time	`json:"timestamp"`
-}
 
 func main() {
 	sensorID := "sensor1"
@@ -29,7 +22,7 @@ func main() {
 		if value < -20 || value > 15 {
 			alert = true
 		}
-		reading := Reading{
+		reading := models.Reading{
 			ID:        sensorID,
 			Type:      sensorType,
 			Value:     value,
@@ -40,7 +33,8 @@ func main() {
 		readingMarshal, _ := json.Marshal(reading)
 		fmt.Println("Sending reading: ", string(readingMarshal))
 
-		_, err := http.Post("http://127.0.0.1:5000/sensor-readings", "application/json", bytes.NewReader(readingMarshal))
+		_, err := http.Post("http://127.0.0.1:5000/sensor-readings",
+			"application/json", bytes.NewReader(readingMarshal))
 
 		if err != nil {
 			fmt.Println(err)
