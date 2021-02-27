@@ -57,7 +57,7 @@ func main() {
 		defer rows.Close()
 		for rows.Next() {
 			oneReading := new(models.Reading)
-			if err := rows.Scan(&oneReading.ID, &oneReading.Type, &oneReading.Value, &oneReading.Timestamp); err != nil {
+			if err := rows.Scan(&oneReading.ID, &oneReading.ID, &oneReading.Type, &oneReading.Value, &oneReading.Timestamp); err != nil {
 				panic(err)
 			}
 			readings = append(readings, oneReading)

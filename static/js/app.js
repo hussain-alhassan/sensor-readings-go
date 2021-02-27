@@ -16,7 +16,6 @@ function refreshReadings(data) {
     // add new rows
     const myTable = document.getElementById('myTable');
     data.forEach(reading => {
-        console.log(reading)
         const table_row = document.createElement('tr');
 
         if (reading.value < -20 || reading.value > 15) table_row.classList.add('alert')
